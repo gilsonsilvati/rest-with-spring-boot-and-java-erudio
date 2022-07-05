@@ -29,10 +29,6 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
 
     private ExceptionResponse buildExceptionResponse(String message, String description) {
-        return ExceptionResponse.builder()
-                .timestamp(ZonedDateTime.now())
-                .message(message)
-                .details(description)
-                .build();
+        return new ExceptionResponse(ZonedDateTime.now(), message, description);
     }
 }

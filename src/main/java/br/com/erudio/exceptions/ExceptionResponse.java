@@ -1,14 +1,9 @@
 package br.com.erudio.exceptions;
 
-import lombok.Builder;
-import lombok.Data;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-@Builder
-@Data
 public class ExceptionResponse implements Serializable {
 
     @Serial
@@ -17,4 +12,22 @@ public class ExceptionResponse implements Serializable {
     private ZonedDateTime timestamp;
     private String message;
     private String details;
+
+    public ExceptionResponse(ZonedDateTime timestamp, String message, String details) {
+        this.timestamp = timestamp;
+        this.message = message;
+        this.details = details;
+    }
+
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getDetails() {
+        return details;
+    }
 }

@@ -1,15 +1,19 @@
-package br.com.erudio.controller;
+package br.com.erudio.controllers;
 
 import br.com.erudio.exceptions.UnsupportedMathOperationException;
+import br.com.erudio.math.SimpleMath;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
+import static br.com.erudio.converters.NumberConverter.convertToDouble;
+import static br.com.erudio.converters.NumberConverter.isNotNumeric;
 
 @RestController
 public class MathController {
+
+    private SimpleMath math = new SimpleMath();
 
     @RequestMapping(value = "sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
     public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) {
@@ -17,7 +21,7 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please, set a numeric value!");
         }
 
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return math.sum(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "subtraction/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -26,7 +30,7 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please, set a numeric value!");
         }
 
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+        return math.subtraction(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "multiplication/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -35,7 +39,7 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please, set a numeric value!");
         }
 
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+        return math.multiplication(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "division/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -44,7 +48,7 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please, set a numeric value!");
         }
 
-        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+        return math.division(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "average/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -53,7 +57,7 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please, set a numeric value!");
         }
 
-        return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
+        return math.average(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "square-root/{number}", method = RequestMethod.GET)
@@ -62,26 +66,6 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please, set a numeric value!");
         }
 
-        return Math.sqrt(convertToDouble(number));
-    }
-
-    private boolean isNotNumeric(String value) {
-        if (Objects.isNull(value)) {
-            return true;
-        }
-
-        var strNumber = getFormatted(value);
-
-        var isNumeric = strNumber.matches("[-+]?\\d*\\.?\\d+");
-
-        return !isNumeric;
-    }
-
-    private Double convertToDouble(String value) {
-        return Double.parseDouble(getFormatted(value));
-    }
-
-    private String getFormatted(String value) {
-        return value.replace(",", ".");
+        return math.squareRoot(convertToDouble(number));
     }
 }

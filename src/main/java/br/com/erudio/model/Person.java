@@ -1,4 +1,4 @@
-package br.com.erudio.models;
+package br.com.erudio.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

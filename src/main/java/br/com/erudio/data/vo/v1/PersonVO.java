@@ -1,14 +1,11 @@
 package br.com.erudio.data.vo.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder( {"id", "address", "firstName", "lastName", "gender"} )
 public class PersonVO {
 
-    @JsonIgnore
     private Long id;
-
     private String firstName;
     private String lastName;
     private String address;

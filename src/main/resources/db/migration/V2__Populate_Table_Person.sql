@@ -1,3 +1,3 @@
-INSERT INTO `person` VALUES
-    (1,'Uberlândia - Minas Gerais - Brazil','Leandro','Male','Costa'),
-    (2,'Smiljan - Croatia','Nikola','Male','Tesla');
+INSERT INTO `person` (id,first_name,last_name,address,gender) VALUES
+    (1,'Leandro','Costa','Uberlândia - Minas Gerais - Brazil','Male'),
+    (2,'Nikola','Tesla','Smiljan - Croatia','Male');

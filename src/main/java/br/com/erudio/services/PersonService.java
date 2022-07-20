@@ -1,5 +1,6 @@
 package br.com.erudio.services;
 
+import br.com.erudio.controllers.PersonController;
 import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.exceptions.ResourceNotFoundException;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.logging.Logger;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class PersonService {
@@ -35,7 +39,10 @@ public class PersonService {
     public PersonVO findById(Long id) {
         logger.info("Finding one person!");
 
-        return DozerMapper.parseObject(getEntity(id), PersonVO.class);
+        var personVO = DozerMapper.parseObject(getEntity(id), PersonVO.class);
+        personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+
+        return personVO;
     }
 
     public PersonVO create(PersonVO person) {
@@ -57,7 +64,7 @@ public class PersonService {
     public PersonVO update(PersonVO person) {
         logger.info("Updating one person!");
 
-        var entity = getEntity(person.getId());
+        var entity = getEntity(person.getKey());
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());

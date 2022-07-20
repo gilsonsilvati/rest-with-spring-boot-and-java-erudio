@@ -33,14 +33,17 @@ public class PersonService {
     public List<PersonVO> findAll() {
         logger.info("Finding all people!");
 
-        return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
+        List<PersonVO> persons = DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
+        persons.forEach(personVO -> addLink(personVO.getKey(), personVO));
+
+        return persons;
     }
 
     public PersonVO findById(Long id) {
         logger.info("Finding one person!");
 
         var personVO = DozerMapper.parseObject(getEntity(id), PersonVO.class);
-        personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        addLink(id, personVO);
 
         return personVO;
     }
@@ -50,7 +53,10 @@ public class PersonService {
 
         var entity = DozerMapper.parseObject(person, Person.class);
 
-        return DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        var personVO = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        addLink(personVO.getKey(), personVO);
+
+        return personVO;
     }
 
     public PersonVOV2 createV2(PersonVOV2 person) {
@@ -71,7 +77,10 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        var personVO = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        addLink(person.getKey(), personVO);
+
+        return personVO;
     }
 
     public void delete(Long id) {
@@ -83,5 +92,9 @@ public class PersonService {
     private Person getEntity(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MESSAGE));
+    }
+
+    private void addLink(Long id, PersonVO personVO) {
+        personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
     }
 }

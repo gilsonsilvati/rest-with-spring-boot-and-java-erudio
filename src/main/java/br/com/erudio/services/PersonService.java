@@ -3,6 +3,7 @@ package br.com.erudio.services;
 import br.com.erudio.controllers.PersonController;
 import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.data.vo.v2.PersonVOV2;
+import br.com.erudio.exceptions.RequiredObjectIsNullException;
 import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.mapper.DozerMapper;
 import br.com.erudio.mapper.custom.PersonMapper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -31,6 +33,7 @@ public class PersonService {
     protected PersonMapper mapper;
 
     public List<PersonVO> findAll() {
+
         logger.info("Finding all people!");
 
         List<PersonVO> persons = DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
@@ -40,6 +43,7 @@ public class PersonService {
     }
 
     public PersonVO findById(Long id) {
+
         logger.info("Finding one person!");
 
         var personVO = DozerMapper.parseObject(getEntity(id), PersonVO.class);
@@ -49,6 +53,11 @@ public class PersonService {
     }
 
     public PersonVO create(PersonVO person) {
+
+        if (Objects.isNull(person)) {
+            throw new RequiredObjectIsNullException();
+        }
+
         logger.info("Creating one person!");
 
         var entity = DozerMapper.parseObject(person, Person.class);
@@ -60,6 +69,7 @@ public class PersonService {
     }
 
     public PersonVOV2 createV2(PersonVOV2 person) {
+
         logger.info("Creating one person with V2!");
 
         var entity = mapper.convertVOToEntity(person);
@@ -68,6 +78,11 @@ public class PersonService {
     }
 
     public PersonVO update(PersonVO person) {
+
+        if (Objects.isNull(person)) {
+            throw new RequiredObjectIsNullException();
+        }
+
         logger.info("Updating one person!");
 
         var entity = getEntity(person.getKey());
@@ -84,17 +99,20 @@ public class PersonService {
     }
 
     public void delete(Long id) {
+
         logger.info("Deleting one person!");
 
         repository.delete(getEntity(id));
     }
 
     private Person getEntity(Long id) {
+
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MESSAGE));
     }
 
     private void addLink(Long id, PersonVO personVO) {
+
         personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
     }
 }

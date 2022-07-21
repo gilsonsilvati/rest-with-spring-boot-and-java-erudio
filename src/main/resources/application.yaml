@@ -1,10 +1,12 @@
 ######################
 ####### CONFIG #######
+######################
 server:
   port: 8082
 
 ######################
 ##### DATASOURCE #####
+######################
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -18,3 +20,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: false
+
+######################
+###### OPEN API ######
+######################
+spring-doc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true

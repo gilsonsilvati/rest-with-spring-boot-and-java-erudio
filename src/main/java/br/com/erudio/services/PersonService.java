@@ -2,7 +2,6 @@ package br.com.erudio.services;
 
 import br.com.erudio.controllers.PersonController;
 import br.com.erudio.data.vo.v1.PersonVO;
-import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.exceptions.RequiredObjectIsNullException;
 import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.mapper.DozerMapper;
@@ -66,15 +65,6 @@ public class PersonService {
         addLink(personVO.getKey(), personVO);
 
         return personVO;
-    }
-
-    public PersonVOV2 createV2(PersonVOV2 person) {
-
-        logger.info("Creating one person with V2!");
-
-        var entity = mapper.convertVOToEntity(person);
-
-        return mapper.convertEntityToVO(repository.save(entity));
     }
 
     public PersonVO update(PersonVO person) {

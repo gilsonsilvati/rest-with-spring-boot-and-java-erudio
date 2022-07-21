@@ -1,7 +1,7 @@
 package br.com.erudio.controllers;
 
+import br.com.erudio.controllers.swagger.PersonSwagger;
 import br.com.erudio.data.vo.v1.PersonVO;
-import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.services.PersonService;
 import br.com.erudio.util.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +21,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/person/v1")
-public class PersonController {
+public class PersonController implements PersonSwagger {
 
     @Autowired
     protected PersonService service;
 
+    @Override
     @GetMapping(produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML } )
     public List<PersonVO> findAll() {
         return service.findAll();
     }
 
+    @Override
     @GetMapping(value = "{id}",
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML } )
     public PersonVO findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
+    @Override
     @PostMapping(
             consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML },
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML }
@@ -47,13 +50,7 @@ public class PersonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
-    @PostMapping(value = "v2", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    public ResponseEntity<PersonVOV2> createV2(@RequestBody PersonVOV2 person) {
-        var entity = service.createV2(person);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(entity);
-    }
-
+    @Override
     @PutMapping(
             consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML },
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML }
@@ -62,6 +59,7 @@ public class PersonController {
         return service.update(person);
     }
 
+    @Override
     @DeleteMapping(value = "{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) {

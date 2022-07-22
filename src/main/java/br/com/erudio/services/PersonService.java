@@ -5,7 +5,6 @@ import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.exceptions.RequiredObjectIsNullException;
 import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.mapper.DozerMapper;
-import br.com.erudio.mapper.custom.PersonMapper;
 import br.com.erudio.model.Person;
 import br.com.erudio.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,6 @@ public class PersonService {
 
     @Autowired
     protected PersonRepository repository;
-
-    @Autowired
-    protected PersonMapper mapper;
 
     public List<PersonVO> findAll() {
 

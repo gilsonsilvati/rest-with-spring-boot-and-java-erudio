@@ -97,4 +97,5 @@ class DozerMapperTest {
         assertEquals("Address Test12", outputTwelve.getAddress());
         assertEquals("Male", outputTwelve.getGender());
     }
+
 }

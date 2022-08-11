@@ -7,6 +7,7 @@ import br.com.erudio.util.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ public class PersonController implements PersonSwagger {
     @Override
     @GetMapping(value = "{id}",
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML } )
+    @CrossOrigin(origins = "http://localhost:8082")
     public PersonVO findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
@@ -44,6 +46,7 @@ public class PersonController implements PersonSwagger {
             consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML },
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML }
     )
+    @CrossOrigin(origins = { "http://localhost:8082", "https://erudio.com.br" })
     public ResponseEntity<PersonVO> create(@RequestBody PersonVO person) {
         var entity = service.create(person);
 

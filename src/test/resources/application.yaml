@@ -5,6 +5,12 @@ server:
   port: 8888
 
 ######################
+######## CORS ########
+######################
+cors:
+  originPatterns: http://localhost:3000,http://localhost:8082,https://erudio.com.br
+
+######################
 ##### DATASOURCE #####
 ######################
 spring:

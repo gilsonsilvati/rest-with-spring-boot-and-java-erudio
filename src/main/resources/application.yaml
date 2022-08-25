@@ -26,6 +26,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: false
+######################
+####### CONFIG #######
+######################
+  output:
+    ansi:
+      enabled: ALWAYS
 
 ######################
 ###### OPEN API ######

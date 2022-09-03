@@ -38,7 +38,7 @@ public class Book implements Serializable {
     @Column(nullable = false, length = 250)
     private String title;
 
-    public Book() {}
+    public Book() { }
 
     public Long getId() {
         return id;
@@ -78,8 +78,11 @@ public class Book implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
+
         Book book = (Book) o;
+
         return Objects.equals(id, book.id);
     }
 

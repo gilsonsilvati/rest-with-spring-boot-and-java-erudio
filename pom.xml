@@ -18,11 +18,12 @@
 
     <properties>
         <java.version>18</java.version>
-        <dozer.version>6.4.0</dozer.version>
+        <dozer.version>6.5.2</dozer.version>
         <springdoc.version>2.0.0-M3</springdoc.version>
         <rest-assured.version>5.1.1</rest-assured.version>
         <testcontainers.version>1.17.3</testcontainers.version>
         <owaso.version>7.1.1</owaso.version>
+        <java-jwt.version>4.0.0</java-jwt.version>
     </properties>
 
     <dependencies>
@@ -38,6 +39,10 @@
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,15 +54,18 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
         </dependency>
 
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+            <version>9.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
+            <version>9.2.0</version>
         </dependency>
 
         <dependency>
@@ -82,6 +90,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${java-jwt.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -89,6 +103,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <version>4.7.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>

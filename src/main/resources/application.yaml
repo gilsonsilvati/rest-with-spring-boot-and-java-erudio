@@ -26,6 +26,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: false
+
 ######################
 ####### CONFIG #######
 ######################
@@ -40,3 +41,12 @@ spring-doc:
   pathsToMatch: /api/**/v1/**
   swagger-ui:
     use-root-path: true
+
+######################
+###### SECURITY ######
+######################
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-length: 3600000

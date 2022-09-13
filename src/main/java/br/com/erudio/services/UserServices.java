@@ -14,7 +14,7 @@ public class UserServices implements UserDetailsService {
 	
 	private final Logger logger = Logger.getLogger(UserServices.class.getName());
 	
-	UserRepository repository;
+	private final UserRepository repository;
 
 	public UserServices(UserRepository repository) {
 		this.repository = repository;

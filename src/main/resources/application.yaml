@@ -1,1 +1,52 @@
+######################
+####### CONFIG #######
+######################
+server:
+  port: 8082
 
+######################
+######## CORS ########
+######################
+cors:
+  originPatterns: http://localhost:3000,http://localhost:8082,https://erudio.com.br
+
+######################
+##### DATASOURCE #####
+######################
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/rest_with_spring_boot_erudio?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: MySql2022!
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+
+######################
+####### CONFIG #######
+######################
+  output:
+    ansi:
+      enabled: ALWAYS
+
+######################
+###### OPEN API ######
+######################
+spring-doc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true
+
+######################
+###### SECURITY ######
+######################
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-length: 3600000

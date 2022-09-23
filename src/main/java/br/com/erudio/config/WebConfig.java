@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
     private static final MediaType MEDIA_TYPE_APPLICATION_YML = MediaType.valueOf("application/x-yaml");
 
     @Value("${cors.originPatterns:default}")
-    private String corsOriginPatterns = "";
+    private final String corsOriginPatterns = "";
 
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {

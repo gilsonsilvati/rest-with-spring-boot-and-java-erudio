@@ -6,7 +6,6 @@ import br.com.erudio.model.User;
 import br.com.erudio.repositories.UserRepository;
 import br.com.erudio.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,7 +29,7 @@ public class AuthService {
     @Autowired
     private UserRepository repository;
 
-    public ResponseEntity<TokenVO> singIn(AccountCredentialsVO data) {
+    public TokenVO signIn(AccountCredentialsVO data) {
         try {
             var username = data.getUsername();
             var password = data.getPassword();
@@ -41,9 +40,7 @@ public class AuthService {
             User user = repository.findByUsername(username)
                     .orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found!"));
 
-            var tokenResponse = tokenProvider.createAccessToken(username, user.getRoles());
-
-            return ResponseEntity.ok(tokenResponse);
+            return tokenProvider.createAccessToken(username, user.getRoles());
         } catch (Exception e) {
             LOGGER.log(Level.FINE, "Invalid username/password supplied!", e);
             throw new BadCredentialsException("Invalid username/password supplied!");

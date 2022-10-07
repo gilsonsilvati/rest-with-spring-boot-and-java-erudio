@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtTokenProvider tokenProvider;
 
+    @Bean
     public PasswordEncoder passwordEncoder() {
         var pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
 
@@ -36,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return passwordEncoder;
     }
 
-    @Bean
     @Override
+    @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

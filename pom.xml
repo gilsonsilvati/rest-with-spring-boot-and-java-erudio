@@ -18,15 +18,12 @@
 
     <properties>
         <java.version>18</java.version>
-        <dozer.version>6.5.2</dozer.version>
+        <dozer.version>6.4.0</dozer.version>
         <springdoc.version>2.0.0-M3</springdoc.version>
         <rest-assured.version>5.1.1</rest-assured.version>
         <testcontainers.version>1.17.3</testcontainers.version>
         <owaso.version>7.1.1</owaso.version>
         <java-jwt.version>4.0.0</java-jwt.version>
-        <mysql-connector.version>8.0.30</mysql-connector.version>
-        <flyway.version>9.2.0</flyway.version>
-        <mockito.version>4.7.0</mockito.version>
     </properties>
 
     <dependencies>
@@ -57,18 +54,15 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
-            <version>${flyway.version}</version>
         </dependency>
 
         <dependency>
@@ -106,7 +100,6 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

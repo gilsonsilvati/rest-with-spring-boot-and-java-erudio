@@ -1,0 +1,385 @@
+openapi: 3.0.1
+info:
+  title: RESTfull API with Java 18 and Spring Boot 3
+  description: Some description about your API
+  termsOfService: https://www.apache.org/licenses/LICENSE-2.0.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/
+  version: v1
+servers:
+  - url: http://localhost:8082
+    description: Generated server url
+tags:
+  - name: People
+    description: Endpoints for Managing People
+  - name: Book
+    description: Endpoints for Managing Book
+paths:
+  /api/person/v1:
+    get:
+      tags:
+        - People
+      summary: Finds all People
+      description: Finds all People
+      operationId: findAll
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonVO'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Error
+    put:
+      tags:
+        - People
+      summary: Updates a Person
+      description: >-
+        Updates a Person by passing in a JSON, XML or YAML representation of the
+        person!
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonVO'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PersonVO'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/PersonVO'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonVO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Error
+    post:
+      tags:
+        - People
+      summary: Adds a new Person
+      description: >-
+        Adds a new Person by passing in a JSON, XML or YAML representation of
+        the person!
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonVO'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PersonVO'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/PersonVO'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonVO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Error
+  /api/book/v1:
+    get:
+      tags:
+        - Book
+      summary: Finds all Book
+      description: Finds all Book
+      operationId: findAll_1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookVO'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Error
+    put:
+      tags:
+        - Book
+      summary: Updates a Book
+      description: >-
+        Updates a Book by passing in a JSON, XML or YML representation of the
+        book!
+      operationId: update_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookVO'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BookVO'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/BookVO'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookVO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Error
+    post:
+      tags:
+        - Book
+      summary: Adds a new Book
+      description: >-
+        Adds a new Book by passing in a JSON, XML or YML representation of the
+        book!
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookVO'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BookVO'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/BookVO'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookVO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Error
+  /auth/signin:
+    post:
+      tags:
+        - Authentication Endpoint
+      summary: Authenticates a user and returns a token
+      operationId: signIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCredentialsVO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/person/v1/{id}:
+    get:
+      tags:
+        - People
+      summary: Finds a Person
+      description: Finds a Person
+      operationId: findById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonVO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Error
+    delete:
+      tags:
+        - People
+      summary: Deletes a Person
+      description: Deletes a Person
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Error
+  /api/book/v1/{id}:
+    get:
+      tags:
+        - Book
+      summary: Finds a Book
+      description: Finds a Book
+      operationId: findById_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookVO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Error
+    delete:
+      tags:
+        - Book
+      summary: Deletes a Book
+      description: Deletes a Book
+      operationId: delete_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Error
+components:
+  schemas:
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
+    PersonVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address:
+          type: string
+        gender:
+          type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+    BookVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        author:
+          type: string
+        launchDate:
+          type: string
+          format: date-time
+        price:
+          type: number
+          format: double
+        title:
+          type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+    AccountCredentialsVO:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        hreflang:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+        templated:
+          type: boolean

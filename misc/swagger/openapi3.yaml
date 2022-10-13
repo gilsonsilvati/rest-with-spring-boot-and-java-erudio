@@ -16,6 +16,30 @@ tags:
   - name: Book
     description: Endpoints for Managing Book
 paths:
+  /auth/refresh/{username}:
+    put:
+      tags:
+        - Authentication Endpoint
+      summary: Refresh token for authenticated user and returns a token
+      operationId: refreshToken
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
   /api/person/v1:
     get:
       tags:
@@ -31,7 +55,40 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PersonVO'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    firstName:
+                      type: string
+                    lastName:
+                      type: string
+                    address:
+                      type: string
+                    gender:
+                      type: string
+                    _links:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                          hreflang:
+                            type: string
+                          title:
+                            type: string
+                          type:
+                            type: string
+                          deprecation:
+                            type: string
+                          profile:
+                            type: string
+                          name:
+                            type: string
+                          templated:
+                            type: boolean
         '401':
           description: Unauthorized
         '500':
@@ -48,13 +105,112 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PersonVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                address:
+                  type: string
+                gender:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/xml:
             schema:
-              $ref: '#/components/schemas/PersonVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                address:
+                  type: string
+                gender:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/PersonVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                address:
+                  type: string
+                gender:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
         required: true
       responses:
         '200':
@@ -62,7 +218,40 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersonVO'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  address:
+                    type: string
+                  gender:
+                    type: string
+                  _links:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        hreflang:
+                          type: string
+                        title:
+                          type: string
+                        type:
+                          type: string
+                        deprecation:
+                          type: string
+                        profile:
+                          type: string
+                        name:
+                          type: string
+                        templated:
+                          type: boolean
         '400':
           description: Bad Request
         '401':
@@ -83,13 +272,112 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PersonVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                address:
+                  type: string
+                gender:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/xml:
             schema:
-              $ref: '#/components/schemas/PersonVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                address:
+                  type: string
+                gender:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/PersonVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                address:
+                  type: string
+                gender:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
         required: true
       responses:
         '201':
@@ -97,7 +385,40 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersonVO'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  address:
+                    type: string
+                  gender:
+                    type: string
+                  _links:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        hreflang:
+                          type: string
+                        title:
+                          type: string
+                        type:
+                          type: string
+                        deprecation:
+                          type: string
+                        profile:
+                          type: string
+                        name:
+                          type: string
+                        templated:
+                          type: boolean
         '400':
           description: Bad Request
         '401':
@@ -119,7 +440,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/BookVO'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    author:
+                      type: string
+                    launchDate:
+                      type: string
+                      format: date-time
+                    price:
+                      type: number
+                      format: double
+                    title:
+                      type: string
+                    _links:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                          hreflang:
+                            type: string
+                          title:
+                            type: string
+                          type:
+                            type: string
+                          deprecation:
+                            type: string
+                          profile:
+                            type: string
+                          name:
+                            type: string
+                          templated:
+                            type: boolean
         '401':
           description: Unauthorized
         '500':
@@ -136,13 +492,118 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                author:
+                  type: string
+                launchDate:
+                  type: string
+                  format: date-time
+                price:
+                  type: number
+                  format: double
+                title:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/xml:
             schema:
-              $ref: '#/components/schemas/BookVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                author:
+                  type: string
+                launchDate:
+                  type: string
+                  format: date-time
+                price:
+                  type: number
+                  format: double
+                title:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/BookVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                author:
+                  type: string
+                launchDate:
+                  type: string
+                  format: date-time
+                price:
+                  type: number
+                  format: double
+                title:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
         required: true
       responses:
         '200':
@@ -150,7 +611,42 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookVO'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  author:
+                    type: string
+                  launchDate:
+                    type: string
+                    format: date-time
+                  price:
+                    type: number
+                    format: double
+                  title:
+                    type: string
+                  _links:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        hreflang:
+                          type: string
+                        title:
+                          type: string
+                        type:
+                          type: string
+                        deprecation:
+                          type: string
+                        profile:
+                          type: string
+                        name:
+                          type: string
+                        templated:
+                          type: boolean
         '400':
           description: Bad Request
         '401':
@@ -171,13 +667,118 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                author:
+                  type: string
+                launchDate:
+                  type: string
+                  format: date-time
+                price:
+                  type: number
+                  format: double
+                title:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/xml:
             schema:
-              $ref: '#/components/schemas/BookVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                author:
+                  type: string
+                launchDate:
+                  type: string
+                  format: date-time
+                price:
+                  type: number
+                  format: double
+                title:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/BookVO'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                author:
+                  type: string
+                launchDate:
+                  type: string
+                  format: date-time
+                price:
+                  type: number
+                  format: double
+                title:
+                  type: string
+                _links:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                      hreflang:
+                        type: string
+                      title:
+                        type: string
+                      type:
+                        type: string
+                      deprecation:
+                        type: string
+                      profile:
+                        type: string
+                      name:
+                        type: string
+                      templated:
+                        type: boolean
         required: true
       responses:
         '201':
@@ -185,7 +786,42 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookVO'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  author:
+                    type: string
+                  launchDate:
+                    type: string
+                    format: date-time
+                  price:
+                    type: number
+                    format: double
+                  title:
+                    type: string
+                  _links:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        hreflang:
+                          type: string
+                        title:
+                          type: string
+                        type:
+                          type: string
+                        deprecation:
+                          type: string
+                        profile:
+                          type: string
+                        name:
+                          type: string
+                        templated:
+                          type: boolean
         '400':
           description: Bad Request
         '401':
@@ -202,7 +838,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountCredentialsVO'
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
         required: true
       responses:
         '200':
@@ -231,7 +872,40 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersonVO'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  address:
+                    type: string
+                  gender:
+                    type: string
+                  _links:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        hreflang:
+                          type: string
+                        title:
+                          type: string
+                        type:
+                          type: string
+                        deprecation:
+                          type: string
+                        profile:
+                          type: string
+                        name:
+                          type: string
+                        templated:
+                          type: boolean
         '400':
           description: Bad Request
         '401':
@@ -284,7 +958,42 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookVO'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  author:
+                    type: string
+                  launchDate:
+                    type: string
+                    format: date-time
+                  price:
+                    type: number
+                    format: double
+                  title:
+                    type: string
+                  _links:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        hreflang:
+                          type: string
+                        title:
+                          type: string
+                        type:
+                          type: string
+                        deprecation:
+                          type: string
+                        profile:
+                          type: string
+                        name:
+                          type: string
+                        templated:
+                          type: boolean
         '400':
           description: Bad Request
         '401':
@@ -322,7 +1031,24 @@ components:
     Links:
       type: object
       additionalProperties:
-        $ref: '#/components/schemas/Link'
+        type: object
+        properties:
+          href:
+            type: string
+          hreflang:
+            type: string
+          title:
+            type: string
+          type:
+            type: string
+          deprecation:
+            type: string
+          profile:
+            type: string
+          name:
+            type: string
+          templated:
+            type: boolean
     PersonVO:
       type: object
       properties:
@@ -338,7 +1064,26 @@ components:
         gender:
           type: string
         _links:
-          $ref: '#/components/schemas/Links'
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              href:
+                type: string
+              hreflang:
+                type: string
+              title:
+                type: string
+              type:
+                type: string
+              deprecation:
+                type: string
+              profile:
+                type: string
+              name:
+                type: string
+              templated:
+                type: boolean
     BookVO:
       type: object
       properties:
@@ -356,7 +1101,26 @@ components:
         title:
           type: string
         _links:
-          $ref: '#/components/schemas/Links'
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              href:
+                type: string
+              hreflang:
+                type: string
+              title:
+                type: string
+              type:
+                type: string
+              deprecation:
+                type: string
+              profile:
+                type: string
+              name:
+                type: string
+              templated:
+                type: boolean
     AccountCredentialsVO:
       type: object
       properties:

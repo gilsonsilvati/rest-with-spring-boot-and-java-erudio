@@ -11,4 +11,7 @@ public interface AuthSwagger {
 
     @Operation(summary = "Authenticates a user and returns a token")
     ResponseEntity signIn(AccountCredentialsVO data);
+
+    @Operation(summary = "Refresh token for authenticated user and returns a token")
+    ResponseEntity refreshToken(String username, String refreshToken);
 }

@@ -11,11 +11,21 @@
 			"name": "api",
 			"item": [
 				{
-					"name": "person",
+					"name": "person/v1",
 					"item": [
 						{
 							"name": "Finds all People",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [
 									{
@@ -129,6 +139,16 @@
 						{
 							"name": "Updates a Person",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [
 									{
@@ -358,6 +378,16 @@
 						{
 							"name": "Adds a new Person",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -549,6 +579,16 @@
 						{
 							"name": "Finds a Person",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [
 									{
@@ -557,7 +597,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/api/person/v1/:id",
+									"raw": "{{baseUrl}}/api/person/v1/1",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -565,14 +605,7 @@
 										"api",
 										"person",
 										"v1",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "88780053",
-											"description": "(Required) "
-										}
+										"1"
 									]
 								},
 								"description": "Finds a Person"
@@ -768,10 +801,20 @@
 						{
 							"name": "Deletes a Person",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/api/person/v1/:id",
+									"raw": "{{baseUrl}}/api/person/v1/1",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -779,14 +822,7 @@
 										"api",
 										"person",
 										"v1",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "88780053",
-											"description": "(Required) "
-										}
+										"1"
 									]
 								},
 								"description": "Deletes a Person"
@@ -982,11 +1018,21 @@
 					]
 				},
 				{
-					"name": "book",
+					"name": "book/v1",
 					"item": [
 						{
 							"name": "Finds all Book",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [
 									{
@@ -1100,6 +1146,16 @@
 						{
 							"name": "Updates a Book",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [
 									{
@@ -1329,6 +1385,16 @@
 						{
 							"name": "Adds a new Book",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -1520,6 +1586,16 @@
 						{
 							"name": "Finds a Book",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [
 									{
@@ -1528,7 +1604,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/api/book/v1/:id",
+									"raw": "{{baseUrl}}/api/book/v1/1",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1536,14 +1612,7 @@
 										"api",
 										"book",
 										"v1",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "88780053",
-											"description": "(Required) "
-										}
+										"1"
 									]
 								},
 								"description": "Finds a Book"
@@ -1739,10 +1808,20 @@
 						{
 							"name": "Deletes a Book",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/api/book/v1/:id",
+									"raw": "{{baseUrl}}/api/book/v1/1",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1750,14 +1829,7 @@
 										"api",
 										"book",
 										"v1",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "88780053",
-											"description": "(Required) "
-										}
+										"1"
 									]
 								},
 								"description": "Deletes a Book"
@@ -1957,6 +2029,22 @@
 					"item": [
 						{
 							"name": "Authenticates a user and returns a token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (responseCode.code >= 200 && responseCode.code <= 299) {",
+											"    var jsonData = JSON.parse(responseBody);",
+											"",
+											"    postman.setEnvironmentVariable('accessToken', jsonData.accessToken);",
+											"    postman.setEnvironmentVariable('refreshToken', jsonData.refreshToken);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1971,7 +2059,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"ut dolore velit consequat officia\",\n  \"password\": \"in\"\n}",
+									"raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1986,6 +2074,98 @@
 									"path": [
 										"auth",
 										"signin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"ut dolore velit consequat officia\",\n  \"password\": \"in\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/signin",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"signin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "commodo nostrud incididunt"
+								}
+							]
+						},
+						{
+							"name": "Refresh token for authenticated user and returns a token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (responseCode.code >= 200 && responseCode.code <= 299) {",
+											"    var jsonData = JSON.parse(responseBody);",
+											"",
+											"    postman.setEnvironmentVariable('accessToken', jsonData.accessToken);",
+											"    postman.setEnvironmentVariable('refreshToken', jsonData.refreshToken);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{refreshToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh/{{username}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh",
+										"{{username}}"
 									]
 								}
 							},

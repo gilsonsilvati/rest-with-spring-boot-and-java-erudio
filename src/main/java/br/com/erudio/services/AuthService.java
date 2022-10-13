@@ -2,7 +2,6 @@ package br.com.erudio.services;
 
 import br.com.erudio.data.vo.v1.security.AccountCredentialsVO;
 import br.com.erudio.data.vo.v1.security.TokenVO;
-import br.com.erudio.model.User;
 import br.com.erudio.repositories.UserRepository;
 import br.com.erudio.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class AuthService {
 
             authenticationManager.authenticate(authentication);
 
-            User user = repository.findByUsername(username)
+            var user = repository.findByUsername(username)
                     .orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found!"));
 
             return tokenProvider.createAccessToken(username, user.getRoles());
@@ -45,5 +44,12 @@ public class AuthService {
             LOGGER.log(Level.FINE, "Invalid username/password supplied!", e);
             throw new BadCredentialsException("Invalid username/password supplied!");
         }
+    }
+
+    public TokenVO refreshToken(String username, String refreshToken) {
+        repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found!"));
+
+        return tokenProvider.refreshToken(refreshToken);
     }
 }

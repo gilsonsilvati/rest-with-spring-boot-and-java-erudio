@@ -53,6 +53,19 @@ public class JwtTokenProvider {
 		return new TokenVO(username, true, now, validity, accessToken, refreshToken);
 	}
 
+	public TokenVO refreshToken(String refreshToken) {
+		if (refreshToken.startsWith("Bearer ")) {
+			refreshToken = refreshToken.substring("Bearer ".length());
+		}
+
+		var decodedJWT = decodedToken(refreshToken);
+
+		var username = decodedJWT.getSubject();
+		var roles = decodedJWT.getClaim("roles").asList(String.class);
+
+		return createAccessToken(username, roles);
+	}
+
 	private String getAccessToken(String username, List<String> roles, Date now, Date validity) {
 		var issuerUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 
@@ -86,8 +99,7 @@ public class JwtTokenProvider {
 	}
 
 	private DecodedJWT decodedToken(String token) {
-		var alg = Algorithm.HMAC256(secretKey.getBytes());
-		var verifier = JWT.require(alg).build();
+		var verifier = JWT.require(algorithm).build();
 
 		return verifier.verify(token);
 	}

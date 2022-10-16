@@ -25,6 +25,13 @@ spring:
     show-sql: false
 
 ######################
+####### CONFIG #######
+######################
+  output:
+    ansi:
+      enabled: ALWAYS
+
+######################
 ###### OPEN API ######
 ######################
 spring-doc:

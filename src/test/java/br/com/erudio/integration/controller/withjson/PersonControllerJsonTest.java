@@ -7,7 +7,6 @@ import br.com.erudio.integration.vo.PersonVO;
 import br.com.erudio.integration.vo.TokenVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -31,15 +30,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(OrderAnnotation.class)
-public class PersonControllerJsonTest extends AbstractIntegrationTest {
+class PersonControllerJsonTest extends AbstractIntegrationTest {
 	
-	private static RequestSpecification specification;
-	private static ObjectMapper objectMapper;
+	static RequestSpecification specification;
+	static ObjectMapper objectMapper;
 
-	private static PersonVO person;
+	static PersonVO person;
 	
 	@BeforeAll
-	public static void setUp() {
+	static void setUp() {
 		objectMapper = new ObjectMapper();
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		
@@ -48,7 +47,8 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 	@Test
 	@Order(0)
-	void authorization() throws JsonMappingException, JsonProcessingException {
+	void authorization() {
+
 		var user = new AccountCredentialsVO("leandro", "admin123");
 
 		var accessToken = given()
@@ -76,7 +76,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 	
 	@Test
 	@Order(1)
-	void testCreate() throws JsonMappingException, JsonProcessingException {
+	void testCreate() throws JsonProcessingException {
 		mockPerson();
 		
 		var content = given().spec(specification)
@@ -112,7 +112,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 	@Test
 	@Order(2)
-	void testCreateWithWrongOrigin() throws JsonMappingException, JsonProcessingException {
+	void testCreateWithWrongOrigin() {
 		mockPerson();
 
 		var content = given().spec(specification)
@@ -133,7 +133,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 	@Test
 	@Order(3)
-	void testFindById() throws JsonMappingException, JsonProcessingException {
+	void testFindById() throws JsonProcessingException {
 		mockPerson();
 
 		var content = given().spec(specification)
@@ -170,7 +170,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 	@Test
 	@Order(4)
-	void testFindByIdWithWrongOrigin() throws JsonMappingException, JsonProcessingException {
+	void testFindByIdWithWrongOrigin() {
 		mockPerson();
 
 		var content = given().spec(specification)

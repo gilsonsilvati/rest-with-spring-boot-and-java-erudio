@@ -1,10 +1,13 @@
 package br.com.erudio.integration.vo;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@XmlRootElement
 public class TokenVO implements Serializable {
 
 	@Serial

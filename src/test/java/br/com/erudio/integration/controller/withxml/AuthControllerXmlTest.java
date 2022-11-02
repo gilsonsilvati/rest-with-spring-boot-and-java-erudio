@@ -1,4 +1,4 @@
-package br.com.erudio.integration.controller.withjson;
+package br.com.erudio.integration.controller.withxml;
 
 import br.com.erudio.config.TestConfig;
 import br.com.erudio.integration.testcontainers.AbstractIntegrationTest;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class AuthControllerJsonTest extends AbstractIntegrationTest {
+class AuthControllerXmlTest extends AbstractIntegrationTest {
 
     static TokenVO tokenVO;
 
@@ -31,7 +31,7 @@ class AuthControllerJsonTest extends AbstractIntegrationTest {
         tokenVO = given()
                     .basePath("/auth/signin")
                     .port(TestConfig.SERVER_PORT)
-                    .contentType(ContentType.JSON)
+                    .contentType(ContentType.XML)
                     .body(user)
                 .when()
                     .post()
@@ -53,7 +53,7 @@ class AuthControllerJsonTest extends AbstractIntegrationTest {
         var newTokenVO = given()
                     .basePath("/auth/refresh")
                     .port(TestConfig.SERVER_PORT)
-                    .contentType(ContentType.JSON)
+                    .contentType(ContentType.XML)
                     .pathParam("username", tokenVO.getUsername())
                     .header(HttpHeaders.AUTHORIZATION, TestConfig.BEARER + tokenVO.getRefreshToken())
                 .when()

@@ -25,6 +25,7 @@
         <owaso.version>7.1.1</owaso.version>
         <java-jwt.version>4.0.0</java-jwt.version>
         <jacoco.version>0.8.8</jacoco.version>
+        <pmd.version>3.19.0</pmd.version>
 
         <jacoco.coverage.exclusions>
             **/Startup**, **/data/**, **/model/**, **/exceptions/**, **/util/**
@@ -218,9 +219,39 @@
                 </executions>
             </plugin>
 
+            <!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd.version}</version>
+            </plugin>
         </plugins>
 
     </build>
+
+    <!-- PMD -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd.version}</version>
+                <configuration>
+                    <linkXref>true</linkXref>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                    <targetJdk>${java.version}</targetJdk>
+                    <excludes>
+                        <exclude>**/*Bean.java</exclude>
+                        <exclude>**/generated/*.java</exclude>
+                    </excludes>
+                    <excludeRoots>
+                        <excludeRoot>target/generated-sources/stubs</excludeRoot>
+                    </excludeRoots>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <repositories>
         <repository>
